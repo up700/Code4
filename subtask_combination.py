@@ -183,13 +183,13 @@ def train(args, train_dataset, id_to_label_span, id_to_label_type, tokenizer, pa
     train_sampler = RandomSampler(train_dataset) if args.local_rank==-1 else DistributedSampler(train_dataset)
     train_dataloader = DataLoader(train_dataset, sampler=train_sampler, batch_size=args.train_batch_size)
 
-    path = "/ptms_span/"+args.dataset+"/checkpoint-best"
+    path = "ptms_span/"+args.dataset+"/checkpoint-best"
     fw_model_ed = MODEL_CLASSES_["span"][0].from_pretrained(path+"-fw", span_num_labels=span_num_labels, device=args.device)
     fw_model_ed.to(args.device)
     bw_model_ed = MODEL_CLASSES_["span"][0].from_pretrained(path+"-bw", span_num_labels=span_num_labels, device=args.device)
     bw_model_ed.to(args.device)
 
-    path = "/ptms_type/"+args.dataset+"/checkpoint-best"
+    path = "ptms_type/"+args.dataset+"/checkpoint-best"
     fw_model_tp = MODEL_CLASSES_["type"][0].from_pretrained(path+"-fw", type_num_labels=type_num_labels, device=args.device)
     fw_model_tp.to(args.device)
     bw_model_tp = MODEL_CLASSES_["type"][0].from_pretrained(path+"-bw", type_num_labels=type_num_labels, device=args.device)
@@ -242,9 +242,9 @@ def train(args, train_dataset, id_to_label_span, id_to_label_type, tokenizer, pa
             inputs = {"input_ids": batch[0], "attention_mask": batch[1]}
             with torch.no_grad():
                 outputs_fw_ed = fw_model_ed(**inputs)
-                kl_fw_ed = F.softmax(outputs_fw_ed[1], dim=-1).detach()
+                kl_fw_ed = F.softmax(outputs_fw_ed[2], dim=-1).detach()
                 outputs_bw_ed = bw_model_ed(**inputs)
-                kl_bw_ed = F.softmax(outputs_bw_ed[1], dim=-1).detach()
+                kl_bw_ed = F.softmax(outputs_bw_ed[2], dim=-1).detach()
                 outputs_fw_tp = fw_model_tp(**inputs)
                 kl_fw_tp = F.softmax(outputs_fw_tp[1], dim=-1).detach()
                 outputs_bw_tp = bw_model_tp(**inputs)

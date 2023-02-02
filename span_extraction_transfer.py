@@ -600,7 +600,6 @@ def main():
 
     # Training
     if args.do_train=="true":
-
         train_dataset_sl, train_dataset = load_and_cache_examples(args, tokenizer, pad_token_label_id, mode="train")
         logger.info("### Start Training Teacher model on Source language in Span Extraction ###")
         # train_dataset, _ = load_and_cache_examples(args, tokenizer, pad_token_label_id, mode="train")

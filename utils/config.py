@@ -101,10 +101,10 @@ def config():
         help="Number of updates steps to accumulate before performing a backward/update pass.",
     )
     parser.add_argument("--learning_rate", default=5e-5, type=float, help="The initial learning rate for Adam.")
-    parser.add_argument("--weight_decay", default=0.0, type=float, help="Weight decay if we apply some.")
+    parser.add_argument("--weight_decay", default=1e-4, type=float, help="Weight decay if we apply some.")
     parser.add_argument("--adam_epsilon", default=1e-8, type=float, help="Epsilon for Adam optimizer.")
     parser.add_argument("--adam_beta1", default=0.9, type=float, help="BETA1 for Adam optimizer.")
-    parser.add_argument("--adam_beta2", default=0.999, type=float, help="BETA2 for Adam optimizer.")
+    parser.add_argument("--adam_beta2", default=0.98, type=float, help="BETA2 for Adam optimizer.")
     parser.add_argument("--max_grad_norm", default=1.0, type=float, help="Max gradient norm.")
     parser.add_argument(
         "--num_train_epochs", default=3.0, type=float, help="Total number of training epochs to perform."
@@ -115,9 +115,9 @@ def config():
         type=int,
         help="If > 0: set total number of training steps to perform. Override num_train_epochs.",
     )
-    parser.add_argument("--warmup_steps", default=0, type=int, help="Linear warmup over warmup_steps.")
+    parser.add_argument("--warmup_steps", default=500, type=int, help="Linear warmup over warmup_steps.")
 
-    parser.add_argument("--logging_steps", type=int, default=50, help="Log every X updates steps.")
+    parser.add_argument("--logging_steps", type=int, default=100, help="Log every X updates steps.")
     parser.add_argument("--save_steps", type=int, default=50, help="Save checkpoint every X updates steps.")
     parser.add_argument(
         "--eval_all_checkpoints",
@@ -131,7 +131,7 @@ def config():
     parser.add_argument(
         "--overwrite_cache", action="store_true", help="Overwrite the cached training and evaluation sets"
     )
-    parser.add_argument("--seed", type=int, default=42, help="random seed for initialization")
+    parser.add_argument("--seed", type=int, default=0, help="random seed for initialization")
 
     parser.add_argument(
         "--fp16",
@@ -151,10 +151,10 @@ def config():
         "--threshold", default=2.0, type=float, help="threshold strength"
     )
     parser.add_argument(
-        "--cos_start", default=2, type=float, help="co supervised starting"
+        "--cos_start", default=1, type=float, help="co supervised starting"
     )
     parser.add_argument(
-        "--penal_start", default=2, type=float, help="penalize strating"
+        "--penal_start", default=1, type=float, help="penalize strating"
     )
     parser.add_argument(
         "--sp_param_fw", default=5.0, type=float, help="penalize strating"

@@ -25,10 +25,9 @@ ADAM_BETA1=0.9
 ADAM_BETA2=0.98
 WARMUP=500
 
-# ############ Progressive Contrastive Bridging ############
+############ Progressive Contrastive Bridging ############
 
 # model
-# TOKENIZER_NAME=bert-base-multilingual-cased
 MODEL_NAME=bert-base-multilingual-cased
 
 EPOCH=3
@@ -44,24 +43,14 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$GPUID python3 -u pro_contras_
   --output_dir $OUTPUT \
   --tokenizer_name_or_path $TOKENIZER_NAME \
   --cache_dir $PROJECT_ROOT/cached_models \
-  --max_seq_length 128 \
   --learning_rate $LR \
-  --weight_decay $WEIGHT_DECAY \
-  --adam_epsilon $ADAM_EPS \
-  --adam_beta1 $ADAM_BETA1 \
-  --adam_beta2 $ADAM_BETA2 \
-  --max_grad_norm 1.0 \
   --num_train_epochs $EPOCH \
   --warmup_steps $WARMUP \
   --per_gpu_train_batch_size $TRAIN_BATCH \
   --per_gpu_eval_batch_size $EVAL_BATCH \
-  --gradient_accumulation_steps 1 \
-  --logging_steps 100 \
-  --save_steps 100000 \
   --do_train $TRAIN\
   --do_test $TEST \
   --evaluate_during_training \
-  --seed $SEED \
   --overwrite_output_dir \
   --model_type $TOKENIZER_TYPE \
   --dataset $DATASET \
@@ -72,7 +61,7 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$GPUID python3 -u pro_contras_
 SPAN_MODEL_NAME=ptms_pro_contras_bri/$DATASET/checkpoint-best-bpt
 
 # params
-EPOCH=3
+EPOCH=50
 
 TRAIN_BATCH=16
 EVAL_BATCH=32
@@ -85,24 +74,14 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$GPUID python3 -u span_extract
   --output_dir $OUTPUT \
   --tokenizer_name_or_path $TOKENIZER_NAME \
   --cache_dir $PROJECT_ROOT/cached_models \
-  --max_seq_length 128 \
   --learning_rate $LR \
-  --weight_decay $WEIGHT_DECAY \
-  --adam_epsilon $ADAM_EPS \
-  --adam_beta1 $ADAM_BETA1 \
-  --adam_beta2 $ADAM_BETA2 \
-  --max_grad_norm 1.0 \
   --num_train_epochs $EPOCH \
   --warmup_steps $WARMUP \
   --per_gpu_train_batch_size $TRAIN_BATCH \
   --per_gpu_eval_batch_size $EVAL_BATCH \
-  --gradient_accumulation_steps 1 \
-  --logging_steps 100 \
-  --save_steps 100000 \
   --do_train $TRAIN\
   --do_test $TEST \
   --evaluate_during_training \
-  --seed $SEED \
   --overwrite_output_dir \
   --model_type $TOKENIZER_TYPE \
   --dataset $DATASET \
@@ -120,24 +99,14 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$GPUID python3 -u type_predict
   --output_dir $OUTPUT \
   --tokenizer_name_or_path $TOKENIZER_NAME \
   --cache_dir $PROJECT_ROOT/cached_models \
-  --max_seq_length 128 \
   --learning_rate $LR \
-  --weight_decay $WEIGHT_DECAY \
-  --adam_epsilon $ADAM_EPS \
-  --adam_beta1 $ADAM_BETA1 \
-  --adam_beta2 $ADAM_BETA2 \
-  --max_grad_norm 1.0 \
   --num_train_epochs $EPOCH \
   --warmup_steps $WARMUP \
   --per_gpu_train_batch_size $TRAIN_BATCH \
   --per_gpu_eval_batch_size $EVAL_BATCH \
-  --gradient_accumulation_steps 1 \
-  --logging_steps 100 \
-  --save_steps 100000 \
   --do_train $TRAIN\
   --do_test $TEST \
   --evaluate_during_training \
-  --seed $SEED \
   --overwrite_output_dir \
   --model_type $TOKENIZER_TYPE \
   --dataset $DATASET \
@@ -161,24 +130,14 @@ CUDA_DEVICE_ORDER=PCI_BUS_ID CUDA_VISIBLE_DEVICES=$GPUID python3 -u subtask_comb
   --output_dir $OUTPUT \
   --tokenizer_name_or_path $TOKENIZER_NAME \
   --cache_dir $PROJECT_ROOT/cached_models \
-  --max_seq_length 128 \
   --learning_rate $LR \
-  --weight_decay $WEIGHT_DECAY \
-  --adam_epsilon $ADAM_EPS \
-  --adam_beta1 $ADAM_BETA1 \
-  --adam_beta2 $ADAM_BETA2 \
-  --max_grad_norm 1.0 \
   --num_train_epochs $EPOCH \
   --warmup_steps $WARMUP \
   --per_gpu_train_batch_size $TRAIN_BATCH \
   --per_gpu_eval_batch_size $EVAL_BATCH \
-  --gradient_accumulation_steps 1 \
-  --logging_steps 100 \
-  --save_steps 100000 \
   --do_train $TRAIN\
   --do_test $TEST \
   --evaluate_during_training \
-  --seed $SEED \
   --overwrite_output_dir \
   --model_type $TOKENIZER_TYPE \
   --dataset $DATASET \

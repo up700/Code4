@@ -120,6 +120,11 @@ class Type_Classifier(BertPreTrainedModel):
 
 
             outputs = (loss_type, active_logits,) + outputs
+        else:
+            active_loss = attention_mask.view(-1) == 1
+            active_logits = logits_type.view(-1, type_num_labels)[active_loss]
+            loss_type = None
+            outputs = (loss_type, active_logits,) + outputs
 
         return outputs
 

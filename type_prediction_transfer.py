@@ -97,11 +97,11 @@ def initialize_co(args, tokenizer, t_total, type_num_labels):
     model_class, config_class, _ = MODEL_CLASSES["type"]
 
     config_fw = config_class.from_pretrained(
-        args.span_model_name_or_path+"-sl",
+        args.type_model_name_or_path+"-sl",
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
     type_model_fw = model_class.from_pretrained(
-        args.span_model_name_or_path+"-sl",
+        args.type_model_name_or_path+"-sl",
         config=config_fw,
         type_num_labels=type_num_labels,
         device=args.device,
@@ -110,11 +110,11 @@ def initialize_co(args, tokenizer, t_total, type_num_labels):
     type_model_fw.to(args.device)
 
     config_bw = config_class.from_pretrained(
-        args.span_model_name_or_path+"-tl",
+        args.type_model_name_or_path+"-tl",
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
     type_model_bw = model_class.from_pretrained(
-        args.span_model_name_or_path+"-tl",
+        args.type_model_name_or_path+"-tl",
         config=config_bw,
         type_num_labels=type_num_labels,
         device=args.device,
