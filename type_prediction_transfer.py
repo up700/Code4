@@ -659,7 +659,7 @@ def predict(args, pad_token_label_id, type_num_labels, id_to_label_type, mode="t
     for batch in tqdm(eval_dataloader, desc="Evaluating"):
         batch = tuple(t.to(args.device) for t in batch)
         with torch.no_grad():
-            inputs = {"input_ids": batch[0], "attention_mask": batch[1],"labels_type": batch[3]} # 添加segment
+            inputs = {"input_ids": batch[0], "attention_mask": batch[1],"labels_type": batch[3]} # Add segment
             outputs_fw = type_model_fw(**inputs)
             # inputs = {"input_ids": batch[0], "attention_mask": batch[1], "labels_type": batch[3], "logits_bio": outputs_span[2], "tgt": True}
             outputs_bw = type_model_bw(**inputs)
