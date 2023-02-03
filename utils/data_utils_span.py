@@ -138,7 +138,7 @@ def convert_examples_to_features(
         # print(len(tokens), len(label_ids), len(full_label_ids))
 
         # Account for [CLS] and [SEP] with "- 2" and with "- 3" for RoBERTa.
-        special_tokens_count = 3 if sep_token_extra else  4   ##############修改 后面 4/2
+        special_tokens_count = 3 if sep_token_extra else  4
         if len(tokens) > max_seq_length - special_tokens_count:
             tokens = tokens[: (max_seq_length - special_tokens_count)]
             # span_label_ids = span_label_ids[: (max_seq_length - special_tokens_count)]
@@ -177,13 +177,6 @@ def convert_examples_to_features(
             # type_label_ids += [pad_token_label_id]
             label_ids += [pad_token_label_id]
             label_mask += [0]
-        # segment_ids = [sequence_a_segment_id+1] * len(tokens) # 修改+1
-        #######################################  修改Special tokens count
-        # tokens = ["[MASK]", "[SEP]"] + tokens
-        # label_ids = [pad_token_label_id, pad_token_label_id] + label_ids
-        # segment_ids = [0, 0] + segment_ids
-        # label_mask = [0, 0] + label_mask
-        ############################
 
         if cls_token_at_end:
             tokens += [cls_token]
@@ -197,7 +190,7 @@ def convert_examples_to_features(
             # span_label_ids = [pad_token_label_id] + span_label_ids
             # type_label_ids = [pad_token_label_id] + type_label_ids
             label_ids = [pad_token_label_id] + label_ids
-            # segment_ids = [0] + segment_ids # 修改0
+            # segment_ids = [0] + segment_ids 
             label_mask = [0] + label_mask
 
         input_ids = tokenizer.convert_tokens_to_ids(tokens)
